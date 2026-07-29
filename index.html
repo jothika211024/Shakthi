@@ -1,78 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>I Love You Heart</title>
-<style>
-html,body{margin:0;height:100%;overflow:hidden;background:#000;font-family:Arial}
-canvas{display:block}
-#centerText{
-    position:fixed;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    text-align:center;
-    color:#ff69b4;
-    font-family:'Poppins',sans-serif;
-    font-size:48px;
-    font-weight:bold;
-    z-index:1000;
-    pointer-events:none;
-    text-shadow:
-        0 0 10px #ff69b4,
-        0 0 20px #ff69b4,
-        0 0 40px #ff1493,
-        0 0 80px #ff1493;
-}
-
-#centerText span{
-    font-size:34px;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secret Birthday Surprise</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<canvas id="c"></canvas>
-<div id="centerText">
-    I Love You<br>
-    <span>SHAKTHI ❤️</span>
-</div>
-<script>
-const canvas=document.getElementById('c');
-const ctx=canvas.getContext('2d');
-function resize(){canvas.width=innerWidth;canvas.height=innerHeight;}
-addEventListener('resize',resize);resize();
 
-const pts=[];
-for(let t=0;t<Math.PI*2;t+=0.045){
- let x=16*Math.pow(Math.sin(t),3);
- let y=13*Math.cos(t)-5*Math.cos(2*t)-2*Math.cos(3*t)-Math.cos(4*t);
- pts.push({x:x*18,y:-y*18});
-}
-let a=0;
-function draw(){
- requestAnimationFrame(draw);
- a+=0.01;
- ctx.fillStyle="rgba(0,0,0,.18)";
- ctx.fillRect(0,0,canvas.width,canvas.height);
- const cx=canvas.width/2, cy=canvas.height/2;
- for(let i=0;i<pts.length;i++){
-   const p=pts[i];
-   const rx=p.x*Math.cos(a)-p.y*Math.sin(a)*0.25;
-   const ry=p.x*Math.sin(a)*0.25+p.y*Math.cos(a);
-   const s=1+(Math.sin(a+i*0.15))*0.25;
-   ctx.save();
-   ctx.translate(cx+rx*2.5,cy+ry*2.5);
-   ctx.scale(s,s);
-   ctx.fillStyle="#ff2b2b";
-   ctx.shadowColor="#ff0000";
-   ctx.shadowBlur=12;
-   ctx.font="bold 18px Arial";
-   ctx.fillText("I Love You",0,0);
-   ctx.restore();
- }
-}
-draw();
-</script>
+<div class="login-box">
+    <h1>🎁 HAPPY BIRTHDAY SHAKTHI ❤️🎁</h1>
+    <p>Enter the Secret PIN Shakthi ❤️</p>
+    <p>Hint:It's is the every Important date in both of our lives.
+    </p>
+
+    <input
+    type="password"
+    id="pin"
+    maxlength="10"
+    placeholder="**********">
+
+    <button onclick="checkPin()">Unlock</button>
+
+    <p id="error"></p>
+</div>
+
+<script src="script.js"></script>
+
 </body>
 </html>
